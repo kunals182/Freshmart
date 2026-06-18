@@ -1,5 +1,6 @@
 import { CheckIcon, TruckIcon } from "lucide-react";
 import type { Address } from "../../types";
+import { useApp } from "../../context/AppContext";
 
 interface CheckoutReviewProps {
     address: Address;
@@ -11,7 +12,7 @@ interface CheckoutReviewProps {
 
 export default function CheckoutReview({ address, items, handlePlaceOrder, loading, total }: CheckoutReviewProps) {
 
-    const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$";
+    const { currency } = useApp();
 
     return (
         <div className="bg-white rounded-2xl p-6 animate-fade-in">
