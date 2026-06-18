@@ -3,8 +3,10 @@ import { BikeIcon } from "lucide-react";
 import { heroSectionData } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useApp } from "../../context/AppContext";
 
 export default function DeliveryLogin() {
+    const { partners } = useApp();
     const navigate = useNavigate();
     const [email, setEmail] = useState("rahul@example.com");
     const [password, setPassword] = useState("password");
@@ -16,7 +18,13 @@ export default function DeliveryLogin() {
 
         setTimeout(() => {
             setLoading(false);
-            toast.success("Successfully logged in!");
+            const found = partners.find(p => p.email.toLowerCase() === email.trim().toLowerCase());
+            if (!found) {
+                toast.error("Invalid delivery partner email");
+                return;
+            }
+            localStorage.setItem("freshmart_delivery_partner", JSON.stringify(found));
+            toast.success(`Successfully logged in as ${found.name}!`);
             navigate("/delivery");
         }, 1000);
     };
