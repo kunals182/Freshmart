@@ -115,12 +115,21 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
         return initialUsers;
     });
 
-    // User Profile (Jane Doe by default, but can be logged out to null)
+    // User Profile (Jane Doe by default on first load, but stays null if logged out)
     const [user, setUser] = useState<any>(() => {
         const stored = localStorage.getItem("freshmart_user");
         if (stored) return JSON.parse(stored);
+
+        // Check if the user has explicitly logged out in the past
+        const initialized = localStorage.getItem("freshmart_auth_initialized");
+        if (initialized) {
+            return null; // keep logged out
+        }
+
+        // First-time visit: auto-login Jane Doe
         const jane = initialUsers[0];
         localStorage.setItem("freshmart_user", JSON.stringify(jane));
+        localStorage.setItem("freshmart_auth_initialized", "true");
         return jane;
     });
 
@@ -478,6 +487,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
         }
         setUser(found);
         localStorage.setItem("freshmart_user", JSON.stringify(found));
+        localStorage.setItem("freshmart_auth_initialized", "true");
         toast.success(`Welcome back, ${found.name}!`);
         return true;
     };
@@ -517,6 +527,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
         setUsers(prev => [...prev, newUser]);
         setUser(newUser);
         localStorage.setItem("freshmart_user", JSON.stringify(newUser));
+        localStorage.setItem("freshmart_auth_initialized", "true");
 
         // Add a fixed welcome product (first product) to cart as a welcome gift reaction
         if (products.length > 0) {
@@ -534,6 +545,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     const logout = () => {
         setUser(null);
         localStorage.removeItem("freshmart_user");
+        localStorage.setItem("freshmart_auth_initialized", "true");
         toast.success("Logged out successfully");
     };
 
