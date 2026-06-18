@@ -105,7 +105,35 @@ function ClientLayout() {
 export default function App() {
     return (
         <>
-            <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+            <Toaster
+                position="bottom-right"
+                toastOptions={{
+                    duration: 3000,
+                    style: {
+                        background: "#1b3022",
+                        color: "#faf7f2",
+                        borderRadius: "16px",
+                        padding: "12px 20px",
+                        fontSize: "13px",
+                        fontWeight: "600",
+                        boxShadow: "0 10px 25px -5px rgba(27, 48, 34, 0.15), 0 8px 10px -6px rgba(27, 48, 34, 0.15)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        fontFamily: "inherit",
+                    },
+                    success: {
+                        iconTheme: {
+                            primary: "#22c55e",
+                            secondary: "#faf7f2"
+                        }
+                    },
+                    error: {
+                        iconTheme: {
+                            primary: "#ef4444",
+                            secondary: "#faf7f2"
+                        }
+                    }
+                }}
+            />
             <Routes>
                 {/* Customer Routes */}
                 <Route path="/" element={<ClientLayout />}>
