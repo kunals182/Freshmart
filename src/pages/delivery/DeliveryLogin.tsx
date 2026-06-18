@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BikeIcon } from "lucide-react";
 import { heroSectionData } from "../../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useApp } from "../../context/AppContext";
 
@@ -30,7 +30,17 @@ export default function DeliveryLogin() {
     };
 
     return (
-        <div className="min-h-screen flex animate-fade-in">
+        <div className="min-h-screen flex animate-fade-in relative">
+            {/* Portal Switcher */}
+            <div className="absolute top-6 right-6 hidden sm:flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-app-border text-xs font-semibold shadow-xs z-50">
+                <span className="text-zinc-400 font-medium">Portal:</span>
+                <Link to="/login" className="text-zinc-500 hover:text-app-green transition-colors">
+                    Customer
+                </Link>
+                <span className="text-zinc-300">|</span>
+                <span className="px-2 py-0.5 rounded-full bg-app-orange/10 text-app-orange text-[10px]">Delivery Partner</span>
+            </div>
+
             {/* Left Side Visual Banner */}
             <div className="hidden lg:flex lg:w-1/2 bg-app-green relative items-center justify-center">
                 <img src={heroSectionData.hero_image} alt="" className="absolute inset-0 object-cover h-full bg-center opacity-10" />
@@ -65,6 +75,14 @@ export default function DeliveryLogin() {
                             {loading ? "Signing in..." : "Sign In"}
                         </button>
                     </form>
+
+                    {/* Switcher Footer */}
+                    <div className="mt-6 text-center text-xs text-zinc-400 font-medium space-x-2">
+                        <span>Are you a Customer?</span>
+                        <Link to="/login" className="text-app-green hover:underline font-bold transition-all">
+                            Go to Store Login
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

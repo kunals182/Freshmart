@@ -40,11 +40,21 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-app-cream flex flex-col justify-center items-center p-4">
+        <div className="min-h-screen bg-app-cream flex flex-col justify-center items-center p-4 relative">
             {/* Back Button */}
             <div className="absolute top-6 left-6">
                 <Link to="/" className="flex items-center gap-2 text-zinc-500 hover:text-app-green transition-colors font-medium text-sm">
                     <ArrowLeftIcon className="size-4" /> Back to Store
+                </Link>
+            </div>
+
+            {/* Portal Switcher */}
+            <div className="absolute top-6 right-6 hidden sm:flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-app-border text-xs font-semibold shadow-xs">
+                <span className="text-zinc-400 font-medium">Portal:</span>
+                <span className="px-2 py-0.5 rounded-full bg-app-green/10 text-app-green text-[10px]">Customer</span>
+                <span className="text-zinc-300">|</span>
+                <Link to="/delivery/login" className="text-zinc-500 hover:text-app-orange transition-colors">
+                    Delivery Partner
                 </Link>
             </div>
 
@@ -151,6 +161,20 @@ export default function Login() {
                             {isSignIn ? "Create one" : "Sign in"}
                         </button>
                     </p>
+                </div>
+            </div>
+
+            {/* Subtle Portal Footer switcher */}
+            <div className="mt-8 text-center text-xs text-zinc-400 font-medium space-y-2.5 flex flex-col items-center">
+                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-xs px-4 py-2 rounded-full border border-app-border shadow-xs hover:bg-white/80 transition-colors">
+                    <span>Are you a Partner?</span>
+                    <span className="h-3 w-px bg-zinc-200"></span>
+                    <Link to="/delivery/login" className="text-app-green hover:underline font-bold transition-all">
+                        Go to Delivery Portal
+                    </Link>
+                </div>
+                <div className="text-[10px] text-zinc-400/70">
+                    * Admins can log in directly using the Customer Store portal.
                 </div>
             </div>
         </div>
