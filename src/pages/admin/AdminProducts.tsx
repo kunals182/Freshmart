@@ -27,7 +27,7 @@ export default function AdminProducts() {
             <div className="bg-white rounded-2xl shadow-xs border border-app-border overflow-hidden">
                 <div className="px-6 py-5 border-b border-app-border flex items-center justify-between gap-4 flex-wrap">
                     <h2 className="text-xl font-semibold text-zinc-900">Products</h2>
-                    <Link to="/admin/products/new" className="flex items-center gap-2 px-4 py-2 bg-app-green text-white rounded-xl hover:bg-green-950 transition-colors font-medium text-sm">
+                    <Link to="/admin/products/new" className="flex items-center gap-2 px-4 py-2 bg-app-green text-white rounded-xl hover:bg-app-green-light transition-colors font-medium text-sm">
                         <PlusIcon className="size-4" /> Add Product
                     </Link>
                 </div>

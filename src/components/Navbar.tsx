@@ -84,7 +84,7 @@ export default function Navbar() {
                                     onClick={() => setPortalMenuOpen(!portalMenuOpen)}
                                     className="flex items-center gap-1.5 p-1 rounded-full hover:bg-zinc-100 transition-all focus:outline-none cursor-pointer"
                                 >
-                                    <div className="size-7 rounded-full bg-green-950 text-white flex-center font-bold text-xs uppercase shadow-sm">
+                                    <div className="size-7 rounded-full bg-app-green text-white flex-center font-bold text-xs uppercase shadow-sm">
                                         {user.name.charAt(0)}
                                     </div>
                                     <ChevronDownIcon className="size-3.5 text-zinc-500" />
@@ -145,7 +145,7 @@ export default function Navbar() {
                         ) : (
                             <Link
                                 to="/login"
-                                className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-green-950 rounded-full hover:bg-green-900 transition-colors cursor-pointer"
+                                className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-app-green rounded-full hover:bg-app-green-light transition-colors cursor-pointer"
                             >
                                 Sign In
                             </Link>
